@@ -7,31 +7,30 @@ let birthMonth = document.getElementById("month").value;
 let birthYear = document.getElementById("year").value;
 
 //Current Time
-
 let today=new Date();
 let currentDate=today.getDate();
 let currentMonth=today.getMonth()+1;
 let currentYear=today.getFullYear();
 
-leap(currentYear);
+leapYearChecker(currentYear);
     if(birthYear > currentYear ||( birthMonth > currentMonth && birthYear == currentYear) || (birthDay > currentDate && birthMonth == currentMonth && birthMonth && birthYear == currentYear)){
       alert("Not Yet Born !");
       return ;
     }
+    
 let resultYear,resultMonth,resultDay;
-
 resultYear = currentYear - birthYear;
 if(currentMonth >= birthMonth){
     birthMonth = currentMonth - birthMonth ;
-}else{
+}
+else{
     resultYear--;
     resultMonth=12+currentMonth-birthMonth;
 }
-
-
 if(currentDate >= birthDay){
     resultDay=currentDate-birthDay;
-}else{
+}
+else{
     resultMonth--;
     resultDay=month[currentMonth-1] + currentDate - birthDay ;
     {
@@ -40,15 +39,15 @@ if(currentDate >= birthDay){
             resultYear--;
         }
     }
-
 }
 let ans=resultYear + " Years ,"+ resultMonth+"Months ,"+resultDay+"Days";
 document.getElementById("show-age").innerHTML=ans;
 }
-function leap(birthYear){
+function leapYearChecker(birthYear){
     if(birthYear % 4 == 0 || (birthYear % 100 == 0 && birthYear % 400 == 0)){
         month[1]=29;
-    }else{
+    }
+    else{
         month[1]=28;
     }
 }
